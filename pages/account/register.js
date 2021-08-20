@@ -15,6 +15,8 @@ export default function RegisterPage() {
 
   const { register, error } = useContext(AuthContext);
 
+  useEffect(() => error && toast.error(error));
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,7 +25,7 @@ export default function RegisterPage() {
       return;
     }
 
-    register({ email, password, username, passwordConfirm });
+    register({ username, email, password });
   };
 
   return (
