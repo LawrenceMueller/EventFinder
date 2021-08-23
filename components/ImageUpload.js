@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { API_URL } from '../config/index';
 import styles from '@/styles/Form.module.css';
 
-export default function ImageUpload({ evtId, imageUploaded }) {
+export default function ImageUpload({ evtId, imageUploaded, token }) {
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -16,6 +16,9 @@ export default function ImageUpload({ evtId, imageUploaded }) {
 
     const res = await fetch(`${API_URL}/upload`, {
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     });
 
@@ -30,7 +33,7 @@ export default function ImageUpload({ evtId, imageUploaded }) {
 
   return (
     <div className={styles.form}>
-      <h1>Upload Event Image</h1>
+      <h1>Upload Event Image (May take a few seconds)</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.file}>
           <input type='file' onChange={handleFileChange} />

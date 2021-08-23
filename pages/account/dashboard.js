@@ -1,12 +1,29 @@
 import Layout from '@/components/Layout';
+import { useRouter } from 'next/router';
 import { parseCookies } from '@/helpers/index';
 import { API_URL } from '@/config/index';
 import DashboardEvent from '@/components/DashboardEvent';
 import styles from '@/styles/Dashboard.module.css';
 
-export default function DashboardPage({ events }) {
-  const deleteEvent = (id) => {
-    console.log(id);
+export default function DashboardPage({ events, token }) {
+  const router = useRouter();
+
+  const deleteEvent = async (id) => {
+    if (confirm('Are you sure?')) {
+      const res = await fetch(`${API_URL}/events/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message);
+      } else {
+        router.reload();
+      }
+    }
   };
 
   return (
@@ -40,11 +57,15 @@ export async function getServerSideProps({ req }) {
     },
   });
 
-  // Set events equal to user events in json format
+  // Set events equal to responce from strapi
   const events = await res.json();
 
   // Return events to make it usable in the dashboard JSX
+  // Also return token in order to be used in buisness logic funcitons like delete
   return {
-    props: { events },
+    props: {
+      events,
+      token,
+    },
   };
 }
