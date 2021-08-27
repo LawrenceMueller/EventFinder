@@ -34,7 +34,7 @@ export default function Layout({ title, keywords, description, children }) {
 }
 
 Layout.defaultProps = {
-  title: 'Sustainable Events',
-  description: 'Find local events to help the environement',
-  keywords: 'sustainability, climate change, climate, volunteer, help',
+  title: 'Social Pups',
+  description: 'Find local events to help socialize your dog',
+  keywords: 'socialize, dog, puppy, event, volunteer, help',
 };

@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 
 export default function AboutPage() {
   return (
-    <Layout title='Sustainable Events | About'>
+    <Layout title='Social Pups | About'>
       <h1>About</h1>
       <p>
         App that helps dog owners find groups near them in order to properly
