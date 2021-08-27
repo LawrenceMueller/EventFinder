@@ -23,6 +23,8 @@ export default function EditEventPage({ evt, token }) {
     time: evt.time,
     description: evt.description,
   });
+
+  // The following state is used to know whether or not an event has an image preview
   const [imagePreview, setImagePreview] = useState(
     evt.image ? evt.image.formats.thumbnail.url : null
   );
@@ -30,6 +32,9 @@ export default function EditEventPage({ evt, token }) {
 
   const router = useRouter();
 
+  {
+    /* This function handles posting the new event information to the backend */
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -60,16 +65,24 @@ export default function EditEventPage({ evt, token }) {
       toast.error('Something Went Wrong');
       console.log(res);
     } else {
+      // If everything went well we need to grab the event that the user just updated in case the user changed the title, which would change the slug
       const evt = await res.json();
       router.push(`/events/${evt.slug}`);
     }
   };
 
+  {
+    /* A dynamic function which sets values of changed event information by destructering the 
+    name and value and passing that into the set function for the values state */
+  }
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
+  {
+    /* This function fetches the image that the user uploaded and sets the image preview state to that picture */
+  }
   const imageUploaded = async (e) => {
     const res = await fetch(`${API_URL}/events/${evt.id}`);
     const data = await res.json();
@@ -161,6 +174,7 @@ export default function EditEventPage({ evt, token }) {
       </form>
 
       <h2>Evetn Image</h2>
+      {/* Conditional render that shows an image preview if one has been provided */}
       {imagePreview ? (
         <Image
           src={imagePreview}
@@ -174,12 +188,14 @@ export default function EditEventPage({ evt, token }) {
         </div>
       )}
 
+      {/* When the following button is pressed the modal below it is displayed */}
       <div>
         <button className='btn-secondary' onClick={() => setShowModal(true)}>
           <FaImage /> Set Image
         </button>
       </div>
 
+      {/* This modal shows the image upload component where the user uploades an image for the event */}
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         <ImageUpload
           evtId={evt.id}
@@ -191,6 +207,10 @@ export default function EditEventPage({ evt, token }) {
   );
 }
 
+/* This function grabs and returns to the main compopnent above the token from the cookie and 
+   all imforation for the event that needs to be edited. That way we can show the current information
+   of the event
+*/
 export async function getServerSideProps({ params: { id }, req }) {
   const { token } = parseCookies(req);
 

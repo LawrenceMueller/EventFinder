@@ -1,3 +1,10 @@
+/*
+  This component is shown when the button to upload an image is pressed on the edit event page.
+  Basically the user is asked to show a prompt to uplaod an image.
+  The image is sent to the strapi backend which is then uploaded to cloudnary.
+  This image is returned to the edit page where it is used as a preview image.
+*/
+
 import { useState } from 'react';
 import { API_URL } from '../config/index';
 import styles from '@/styles/Form.module.css';
