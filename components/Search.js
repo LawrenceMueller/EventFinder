@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '@/styles/Search.module.css';
 
+{
+  /* This component is the search bar. We simply keep track of terms put in the bar and use query strapi */
+}
 export default function Search() {
   const [term, setTerm] = useState('');
   const router = useRouter();

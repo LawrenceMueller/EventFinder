@@ -21,7 +21,13 @@ export default function SearchPage({ events }) {
   );
 }
 
+{
+  /* This function is where the actual searching happens. The events found are then returned from here to the component above. */
+}
 export async function getServerSideProps({ query: { term } }) {
+  {
+    /* This query string package was needed to format what the user is looking for correctly. That way strapi does the rest */
+  }
   const query = qs.stringify({
     _where: {
       _or: [
@@ -29,6 +35,7 @@ export async function getServerSideProps({ query: { term } }) {
         { performers_contains: term },
         { description_contains: term },
         { venue_contains: term },
+        { address_contains: term },
       ],
     },
   });
