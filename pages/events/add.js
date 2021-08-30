@@ -11,8 +11,6 @@ import styles from '@/styles/Form.module.css';
 export default function AddEventPage({ token }) {
   const [values, setValues] = useState({
     name: '',
-    performers: '',
-    venue: '',
     address: '',
     date: '',
     time: '',
@@ -78,26 +76,6 @@ export default function AddEventPage({ token }) {
             />
           </div>
           <div>
-            <label htmlFor='performers'>Performers</label>
-            <input
-              type='text'
-              name='performers'
-              id='performers'
-              value={values.performers}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='venue'>Venue</label>
-            <input
-              type='text'
-              name='venue'
-              id='venue'
-              value={values.venue}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
             <label htmlFor='address'>Address</label>
             <input
               type='text'
@@ -137,6 +115,14 @@ export default function AddEventPage({ token }) {
             value={values.description}
             onChange={handleInputChange}
           ></textarea>
+        </div>
+        <div>
+          <p>
+            <strong>
+              To add a picture, please visit your dashboard after creating this
+              event and click edit
+            </strong>
+          </p>
         </div>
 
         <input type='submit' value='Add Event' className='btn' />

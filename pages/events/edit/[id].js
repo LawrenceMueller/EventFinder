@@ -16,8 +16,6 @@ import styles from '@/styles/Form.module.css';
 export default function EditEventPage({ evt, token }) {
   const [values, setValues] = useState({
     name: evt.name,
-    performers: evt.performers,
-    venue: evt.value,
     address: evt.address,
     date: evt.date,
     time: evt.time,
@@ -105,26 +103,6 @@ export default function EditEventPage({ evt, token }) {
               id='name'
               name='name'
               value={values.name}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='performers'>Performers</label>
-            <input
-              type='text'
-              name='performers'
-              id='performers'
-              value={values.performers}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='venue'>Venue</label>
-            <input
-              type='text'
-              name='venue'
-              id='venue'
-              value={values.venue}
               onChange={handleInputChange}
             />
           </div>

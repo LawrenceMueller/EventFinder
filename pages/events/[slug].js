@@ -22,7 +22,7 @@ export default function EventPage({ evt }) {
         {evt.image && (
           <div className={styles.image}>
             <Image
-              src={evt.image.formats.medium.url}
+              src={evt.image.url}
               width={960}
               height={600}
               alt='dynamic picture content'
@@ -30,11 +30,8 @@ export default function EventPage({ evt }) {
           </div>
         )}
 
-        <h3>Performers:</h3>
-        <p>{evt.performers}</p>
         <h3>Description:</h3>
         <p>{evt.description}</p>
-        <h3>Venue: {evt.venue}</h3>
         <p>{evt.address}</p>
 
         <EventMap evt={evt} />

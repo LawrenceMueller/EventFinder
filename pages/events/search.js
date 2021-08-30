@@ -34,7 +34,6 @@ export async function getServerSideProps({ query: { term } }) {
         { name_contains: term },
         { performers_contains: term },
         { description_contains: term },
-        { venue_contains: term },
         { address_contains: term },
       ],
     },
